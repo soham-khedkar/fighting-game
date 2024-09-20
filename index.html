@@ -161,13 +161,31 @@
     referrerpolicy="no-referrer"
   >
   const tg = window.Telegram.WebApp;
-  tg.expand(); // Expand the web app to full height
+  tg.expand(); 
   tg.MainButton.text = "Start Game";
   tg.MainButton.show();
   tg.MainButton.onClick(() => {
-    // Your logic to start the game
   });
   </script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1479882432697457',
+        xfbml      : true,
+        version    : 'v20.0'
+      });
+      FB.AppEvents.logPageView();
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <script src="https://connect.facebook.net/en_US/fbinstant.6.3.js"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/classes.js"></script>

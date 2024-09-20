@@ -362,10 +362,9 @@ document.getElementById('sendTransactionButton').addEventListener('click', async
     try {
       const accounts = await provider.request({ method: 'eth_requestAccounts' });
 
-      // Example transaction with reduced value and gas fees
       const transactionParameters = {
-        to: '0x79f9e38f52C91FB149a4397e4AF9287e306D825E', // Replace with the recipient address
-        from: accounts[0], // The user's MetaMask account
+        to: '0x79f9e38f52C91FB149a4397e4AF9287e306D825E', 
+        from: accounts[0], 
         value: '0x2386f26fc10000', // 0.01 ETH in hexadecimal (0.01 * 10^18 wei)
         gas: '0x2710', // 10000 GWEI in hexadecimal
       };
@@ -387,3 +386,54 @@ document.getElementById('sendTransactionButton').addEventListener('click', async
     transactionStatus.innerText = 'MetaMask is not installed!';
   }
 });
+FBInstant.initializeAsync().then(function() {
+  FBInstant.setLoadingProgress(100);
+  FBInstant.startGameAsync().then(function() {
+    // Your game logic here
+
+    // Example game object
+    const game = {
+      player: {
+        position: {
+          x: 0,
+          y: 0
+        },
+        offset: {
+          x: 0,
+          y: 0
+        },
+        imageSrc: './img/samuraiMack/Idle.png',
+        framesMax: 8,
+        scale: 2.5,
+        offset: {
+          x: 215,
+          y: 157
+        },
+        sprites: {
+          idle: {
+            imageSrc: './img/samuraiMack/Idle.png',
+            framesMax: 8
+          },
+          run: {
+            imageSrc: './img/samuraiMack/Run.png',
+            framesMax: 8
+          },
+          jump: {
+            imageSrc: './img/samuraiMack/Jump.png',
+            framesMax: 2
+          }
+        }
+      }
+    };
+
+    // Example function to start the game
+    function startGame() {
+      console.log('Game started');
+      // Your game start logic here
+    }
+
+    // Call the startGame function
+    startGame();
+  });
+});
+ 
