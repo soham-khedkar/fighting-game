@@ -340,6 +340,27 @@ document.getElementById('connectButton').addEventListener('click', async () => {
       // Request account access if needed
       const accounts = await provider.request({ method: 'eth_requestAccounts' });
       console.log('Connected account:', accounts[0]);
+      transactionStatus.innerText = `Connected account: ${accounts[0]}`;
+      
+      // Enable the send transaction button
+      document.getElementById('sendTransactionButton').disabled = false;
+    } catch (error) {
+      console.error('Error connecting to MetaMask:', error);
+      transactionStatus.innerText = `Error connecting to MetaMask: ${error.message}`;
+    }
+  } else {
+    console.log('MetaMask is not installed!');
+    transactionStatus.innerText = 'MetaMask is not installed!';
+  }
+});
+
+document.getElementById('sendTransactionButton').addEventListener('click', async () => {
+  const provider = await detectEthereumProvider();
+  const transactionStatus = document.getElementById('transactionStatus');
+
+  if (provider) {
+    try {
+      const accounts = await provider.request({ method: 'eth_requestAccounts' });
 
       // Example transaction with reduced value and gas fees
       const transactionParameters = {
@@ -353,15 +374,16 @@ document.getElementById('connectButton').addEventListener('click', async () => {
         method: 'eth_sendTransaction',
         params: [transactionParameters],
       });
-
       console.log('Transaction hash:', txHash);
-      transactionStatus.innerHTML = `Transaction successful! Hash: ${txHash}`;
+      transactionStatus.innerText = `Transaction successful: ${txHash}`;
+      player.health = 100
+      document.getElementById('playerHealth').style.width = '100%'
     } catch (error) {
-      console.error('User rejected the request or transaction failed.', error);
-      transactionStatus.innerHTML = `Transaction failed: ${error.message}`;
+      console.error('Error sending transaction:', error);
+      transactionStatus.innerText = `Error sending transaction: ${error.message}`;
     }
   } else {
-    console.error('Please install MetaMask!');
-    transactionStatus.innerHTML = 'Please install MetaMask!';
+    console.log('MetaMask is not installed!');
+    transactionStatus.innerText = 'MetaMask is not installed!';
   }
 });

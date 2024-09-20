@@ -29,6 +29,24 @@
       color: black;
       border: 2px solid #4CAF50;
     }
+    #sendTransactionButton {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      transition-duration: 0.4s;
+    }
+    #sendTransactionButton:hover {
+      background-color: white;
+      color: black;
+      border: 2px solid #4CAF50;
+    }
   </style>
 </head>
 <body>
@@ -130,9 +148,10 @@
     </div>
     <canvas></canvas>
     <div>
-    <button id="connectButton">Connect to MetaMask</button>
-    <div id="transactionStatus"></div>
-  </div>
+      <button id="connectButton">Connect to MetaMask</button>
+      <button id="sendTransactionButton">Send Transaction</button>
+      <div id="transactionStatus"></div>
+    </div>
   </div>
 
   <script
@@ -140,7 +159,8 @@
     integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
-  > const tg = window.Telegram.WebApp;
+  >
+  const tg = window.Telegram.WebApp;
   tg.expand(); // Expand the web app to full height
   tg.MainButton.text = "Start Game";
   tg.MainButton.show();
@@ -148,6 +168,7 @@
     // Your logic to start the game
   });
   </script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/classes.js"></script>
   <script src="index.js"></script>
